@@ -27,6 +27,27 @@ enum HomeBtnItems: String, CaseIterable {
             return "alarm"
         }
     }
+    var buttonColor: Color {
+        switch self {
+        case .note:
+            return Color.blue
+        case .promodoro:
+            return Color.red
+        case .alarm:
+            return Color.green
+        }
+    }
+    var fontColor: Color {
+        switch self {
+        case .note:
+            return Color.black
+        case .promodoro:
+            return Color.black
+        case .alarm:
+            return Color.black
+        }
+    }
+    
 }
 
 struct HomeBtnLabelView: View {
@@ -34,31 +55,23 @@ struct HomeBtnLabelView: View {
     var btnItem: HomeBtnItems //recive the btnItem
     
     var body: some View {
+        
         VStack(spacing: 5) {
             Image(systemName: btnItem.systemImage)  //Btn image
-                .font(.system(size: 30,design: .serif)) //define the font
+                .font(.system(size: 35,design: .serif)) //define the font
                 .bold() //make the btn bold
-                .foregroundStyle(.white) // btn foreground set to black
+                .foregroundStyle(btnItem.fontColor) // btn foreground set to black
                 .symbolEffect(.pulse) // effect of the image
             Text(btnItem.rawValue) // title of the btn
-                .font(.system(size: 25,design: .serif)) // font of the btn
-                .foregroundStyle(.white) //
+                .font(.system(size: 30,design: .serif)) // font of the btn
+                .foregroundStyle(btnItem.fontColor) //
                 .bold()
         }.padding(20)
             .frame(width: 250, height: 160)
-            .background (
-                RoundedRectangle(cornerRadius: 25) // create the rounded rectangle
-                    .stroke(lineWidth: 2.0) // stroke the rectangle with width
-                    .foregroundStyle(Color.white) // define border color
-                    .background(  // set btn background
-                        LinearGradient(
-                            colors: [.darkGreen.opacity(0.5),
-                                     .black.opacity(0.5)],
-                            startPoint: .topTrailing,
-                            endPoint: .bottomLeading))
-                    .shadow(color: .black.opacity(0.5),radius: 5, x: 0, y: 5) // give shadow
-                    .shadow(color: .gray.opacity(1),radius: 20, x: 0, y: 10)
-            ).mask(RoundedRectangle(cornerRadius: 25))
+            .background(  // set btn background
+                btnItem.buttonColor.opacity(0.8)
+            )
+            .mask(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/))
     }
 }
 

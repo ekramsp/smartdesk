@@ -52,7 +52,6 @@ struct HomeView: View {
             HomeBtnLabelView(btnItem: btnItem)
         }.buttonStyle(.plain)
             .hoverEffect(.lift)
-            
         //  .hoverEffectDisabled() // disable defalut hover effect
     }
     
