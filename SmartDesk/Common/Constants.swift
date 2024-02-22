@@ -11,6 +11,6 @@ struct Constants {
     //window id
     static let HOME_WINDOW_ID = "homeWindow"
     static let NOTE_WINDOW_ID = "noteWindow"
-    static let PROMO_DOME_WINDOW_ID = "promoDomeWindow"
+    static let PROMO_DORO_WINDOW_ID = "promoDomeWindow"
     static let ALARM_WINDOW_ID = "alarmWindow"
 }

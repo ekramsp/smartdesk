@@ -14,8 +14,15 @@ struct SmartDeskApp: App {
     var body: some Scene {
         WindowGroup() {
            HomeView()
+                .frame(
+                    minWidth: 1000,
+                    maxWidth: 1200,
+                    minHeight: 500,
+                    maxHeight: 1200
+                 )
         }
-        .windowResizability(.contentSize) // set the size of a window based on content size
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
         
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView()

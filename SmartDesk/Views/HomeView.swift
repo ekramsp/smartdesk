@@ -16,35 +16,53 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            HStack(spacing: 40) {
-                ForEach(ButtonItems.allCases, id: \.self) {item in
-                    //call btn function with suitable case
-                    btnView(btnItem: item)
+            // add background colour
+            LinearGradient(
+                colors:[.darkGreen.opacity(1),
+                        .black.opacity(0.7)],
+                startPoint: .top,
+                endPoint: .bottomTrailing)
+            
+            VStack {
+                //App title view
+                TitleView(title: "Welcome to Smart Desk")
+                
+                // adding button
+                HStack(spacing: 40) {
+                    ForEach(HomeBtnItems.allCases, id: \.self) {item in
+                        //call btn function with suitable case
+                        btnView(btnItem: item)
+                    }
                 }
             }
-            
-        }.padding(20)
+        }
+        .overlay (
+            RoundedRectangle(cornerRadius: 25) //give a rounded border
+                .stroke(.white.opacity(0.7),lineWidth: 4)
+        ).mask(RoundedRectangle(cornerRadius: 25))
+    
     }
     //Return button view
-    func btnView(btnItem: ButtonItems)-> some View {
+    func btnView(btnItem: HomeBtnItems)-> some View {
         Button {
             // select the windo
             openSelectedWindow(btnItam: btnItem)
         } label: {
             //Custom btn label view
-            BtnLabelView(btnItem: btnItem)
+            HomeBtnLabelView(btnItem: btnItem)
         }.buttonStyle(.plain)
             .hoverEffect(.lift)
+            
         //  .hoverEffectDisabled() // disable defalut hover effect
     }
     
     //open selected window from here
-    func openSelectedWindow(btnItam: ButtonItems) {
+    func openSelectedWindow(btnItam: HomeBtnItems) {
         switch(btnItam) {
         case .note:  //open note window
             openWindow(id: Constants.NOTE_WINDOW_ID)
-        case .promodome: //open promodome window
-            openWindow(id: Constants.PROMO_DOME_WINDOW_ID)
+        case .promodoro: //open promodome window
+            openWindow(id: Constants.PROMO_DORO_WINDOW_ID)
         case .alarm: //open alarm window
             openWindow(id: Constants.ALARM_WINDOW_ID)
         }
