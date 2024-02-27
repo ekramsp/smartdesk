@@ -13,13 +13,13 @@ struct SmartDeskApp: App {
 
     var body: some Scene {
         WindowGroup() {
-           HomeView()
-                .frame(
+           HomeWindowView()
+               /* .frame(
                     minWidth: 1000,
                     maxWidth: 1200,
                     minHeight: 500,
                     maxHeight: 1200
-                 )
+                 )*/
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)

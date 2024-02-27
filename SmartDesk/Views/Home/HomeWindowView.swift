@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct HomeView: View {
+struct HomeWindowView: View {
     
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(\.openWindow) private var openWindow
@@ -25,13 +25,13 @@ struct HomeView: View {
             
             VStack {
                 //App title view
-                TitleView(title: "Welcome to Smart Desk")
+                HomeWindowTitleView(title: "Welcome to Smart Desk")
                 
                 // adding button
                 HStack(spacing: 40) {
-                    ForEach(HomeBtnItems.allCases, id: \.self) {item in
+                    ForEach(WindowButtonItems.allCases, id: \.self) {item in
                         //call btn function with suitable case
-                        btnView(btnItem: item)
+                        createWindowButtons(btnItem: item)
                     }
                 }
             }
@@ -43,20 +43,20 @@ struct HomeView: View {
     
     }
     //Return button view
-    func btnView(btnItem: HomeBtnItems)-> some View {
+    func createWindowButtons(btnItem: WindowButtonItems)-> some View {
         Button {
             // select the windo
             openSelectedWindow(btnItam: btnItem)
         } label: {
             //Custom btn label view
-            HomeBtnLabelView(btnItem: btnItem)
+            WindowOpenerButtonView(btnItem: btnItem)
         }.buttonStyle(.plain)
             .hoverEffect(.lift)
         //  .hoverEffectDisabled() // disable defalut hover effect
     }
     
     //open selected window from here
-    func openSelectedWindow(btnItam: HomeBtnItems) {
+    func openSelectedWindow(btnItam: WindowButtonItems) {
         switch(btnItam) {
         case .note:  //open note window
             openWindow(id: Constants.NOTE_WINDOW_ID)
@@ -70,5 +70,5 @@ struct HomeView: View {
 
 //Preview window
 #Preview(windowStyle: .automatic) {
-    HomeView()
+    HomeWindowView()
 }

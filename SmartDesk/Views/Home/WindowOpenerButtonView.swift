@@ -10,7 +10,7 @@ import RealityKit
 import RealityKitContent
 
 /// Enumuration:
-enum HomeBtnItems: String, CaseIterable {
+enum WindowButtonItems: String, CaseIterable {
     case note = "Note"
     case promodoro = "Promodoro"
     case alarm = "Alarm"
@@ -27,6 +27,7 @@ enum HomeBtnItems: String, CaseIterable {
             return "alarm"
         }
     }
+    
     var buttonColor: Color {
         switch self {
         case .note:
@@ -37,6 +38,7 @@ enum HomeBtnItems: String, CaseIterable {
             return Color.green
         }
     }
+    
     var fontColor: Color {
         switch self {
         case .note:
@@ -50,9 +52,9 @@ enum HomeBtnItems: String, CaseIterable {
     
 }
 
-struct HomeBtnLabelView: View {
+struct WindowOpenerButtonView: View {
     
-    var btnItem: HomeBtnItems //recive the btnItem
+    var btnItem: WindowButtonItems //recive the btnItem
     
     var body: some View {
         
@@ -76,7 +78,7 @@ struct HomeBtnLabelView: View {
 }
 
 #Preview {
-    HomeBtnLabelView(btnItem: .promodoro)
+    WindowOpenerButtonView(btnItem: .promodoro)
 }
 
 /*

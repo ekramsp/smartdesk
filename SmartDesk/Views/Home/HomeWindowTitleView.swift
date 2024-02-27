@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct TitleView: View {
+struct HomeWindowTitleView: View {
     
     @State var animatedTitle: String = ""
     let title: String
     private let typeSpeed: Double = 0.2
+    
     var body: some View {
         Text(animatedTitle)
             .font(.system(size: 50,design: .monospaced))
@@ -25,8 +26,11 @@ struct TitleView: View {
             }
         
     }
+    
     func typeAnimation(currentIndex: Int = 0) {
+        
         guard currentIndex < title.count else { return }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + typeSpeed) {
                 let strIndex = title.index(title.startIndex, offsetBy: currentIndex)
                 animatedTitle.append(title[strIndex])
@@ -36,5 +40,5 @@ struct TitleView: View {
 }
 
 #Preview {
-    TitleView(title: "Welcome to Smart Desk")
+    HomeWindowTitleView(title: "Welcome to Smart Desk")
 }
