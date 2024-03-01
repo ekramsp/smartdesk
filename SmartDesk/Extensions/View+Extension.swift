@@ -15,4 +15,11 @@ extension View {
             .shadow(color: .black.opacity(0.5),radius: 5, x: 0, y: 5)
             .shadow(color: .black.opacity(1),radius: 20, x: 0, y: 10)
     }
+    func roundedBorder()-> some View {
+        self
+            .overlay (
+                RoundedRectangle(cornerRadius: 40) //give a rounded border
+                    .stroke(.white.opacity(0.7),lineWidth: 4)
+            ).mask(RoundedRectangle(cornerRadius: 40))
+    }
 }

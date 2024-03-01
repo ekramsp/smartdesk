@@ -17,12 +17,7 @@ struct HomeWindowView: View {
     var body: some View {
         ZStack(alignment: .center) {
             // add background colour
-            LinearGradient(
-                colors:[.darkGreen.opacity(1),
-                        .black.opacity(0.7)],
-                startPoint: .top,
-                endPoint: .bottomTrailing)
-            
+            SmartDeskBackgroundView()
             VStack {
                 //App title view
                 HomeWindowTitleView(title: "Welcome to Smart Desk")
@@ -35,12 +30,12 @@ struct HomeWindowView: View {
                     }
                 }
             }
-        }
-        .overlay (
-            RoundedRectangle(cornerRadius: 25) //give a rounded border
-                .stroke(.white.opacity(0.7),lineWidth: 4)
-        ).mask(RoundedRectangle(cornerRadius: 25))
-    
+        }.roundedBorder()
+            .onAppear {
+                Task {
+                  await openImmersiveSpace(id: "ImmersiveSpace")
+                }
+            }
     }
     //Return button view
     func createWindowButtons(btnItem: WindowButtonItems)-> some View {
@@ -51,15 +46,15 @@ struct HomeWindowView: View {
             //Custom btn label view
             WindowOpenerButtonView(btnItem: btnItem)
         }.buttonStyle(.plain)
-            .hoverEffect(.lift)
-        //  .hoverEffectDisabled() // disable defalut hover effect
+            .hoverEffect()
     }
     
     //open selected window from here
     func openSelectedWindow(btnItam: WindowButtonItems) {
         switch(btnItam) {
         case .note:  //open note window
-            openWindow(id: Constants.NOTE_WINDOW_ID)
+           openWindow(id: Constants.NOTE_WINDOW_ID)
+           
         case .promodoro: //open promodome window
             openWindow(id: Constants.PROMO_DORO_WINDOW_ID)
         case .alarm: //open alarm window

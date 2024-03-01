@@ -1,15 +1,16 @@
 //
-//  ImmersiveView.swift
+//  NoteWindowView.swift
 //  SmartDesk
 //
-//  Created by Ekramul Hoque on 20/2/24.
+//  Created by Md Fahim Faez Abir-00127 on 27/2/24.
 //
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct ImmersiveView: View {
+struct NoteWindowView: View {
+  //  let component = MyComponent()
     var body: some View {
         RealityView { content in
             // Add the initial RealityKit content
@@ -20,6 +21,7 @@ struct ImmersiveView: View {
     }
 }
 
-#Preview(immersionStyle: .mixed) {
-    ImmersiveView()
+#Preview {
+    NoteWindowView()
 }
+
