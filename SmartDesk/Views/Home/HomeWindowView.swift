@@ -21,45 +21,14 @@ struct HomeWindowView: View {
             VStack {
                 //App title view
                 HomeWindowTitleView(title: "Welcome to Smart Desk")
-                
-                // adding button
-                HStack(spacing: 40) {
-                    ForEach(WindowButtonItems.allCases, id: \.self) {item in
-                        //call btn function with suitable case
-                        createWindowButtons(btnItem: item)
-                    }
-                }
-            }
-        }.roundedBorder()
+            }.padding(20)
+        }
+        .roundedBorder()
             .onAppear {
                 Task {
                   await openImmersiveSpace(id: "ImmersiveSpace")
                 }
             }
-    }
-    //Return button view
-    func createWindowButtons(btnItem: WindowButtonItems)-> some View {
-        Button {
-            // select the windo
-            openSelectedWindow(btnItam: btnItem)
-        } label: {
-            //Custom btn label view
-            WindowOpenerButtonView(btnItem: btnItem)
-        }.buttonStyle(.plain)
-            .hoverEffect()
-    }
-    
-    //open selected window from here
-    func openSelectedWindow(btnItam: WindowButtonItems) {
-        switch(btnItam) {
-        case .note:  //open note window
-           openWindow(id: Constants.NOTE_WINDOW_ID)
-           
-        case .promodoro: //open promodome window
-            openWindow(id: Constants.PROMO_DORO_WINDOW_ID)
-        case .alarm: //open alarm window
-            openWindow(id: Constants.ALARM_WINDOW_ID)
-        }
     }
 }
 

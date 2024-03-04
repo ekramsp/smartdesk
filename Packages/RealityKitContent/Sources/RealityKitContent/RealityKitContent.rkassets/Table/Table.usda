@@ -7,179 +7,183 @@
     upAxis = "Y"
 )
 
-def Xform "Scene" (
-        )
-        {
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-            
-def Xform "RootNode" (
-        )
-        {
-            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
-            uniform token[] xformOpOrder = ["xformOp:transform"]
-            
-def Xform "Object014" (
-        prepend references = @./geometries/Geometry_1.usd@</Geometry>
-    )
+def Xform "Scene"
+{
+    matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+    def Xform "RootNode"
     {
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
-        rel material:binding = </Material_2>
+
+        def Xform "Object014" (
+            prepend references = @./geometries/Geometry_1.usd@</Geometry>
+        )
+        {
+            rel material:binding = </Material_2>
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
         }
+    }
 }
-}
 
+def Material "Material_2"
+{
+    token inputs:frame:stPrimvarName = "st"
+    token outputs:mtlx:surface
+    token outputs:realitykit:vertex
+    token outputs:surface.connect = </Material_2/PreviewSurface.outputs:surface>
 
-
-    def Material "Material_2"
+    def Shader "PreviewSurface"
     {
-        def Shader "PreviewSurface"
-        {
-            uniform token info:id = "UsdPreviewSurface"
-            color3f inputs:diffuseColor.connect = </Material_2/Texture_4_diffuse.outputs:rgb>
-            normal3f inputs:normal.connect = </Material_2/Texture_6_normal.outputs:rgb>
-            float inputs:occlusion.connect = </Material_2/Texture_5_occlusion.outputs:r>
-            float inputs:roughness.connect = </Material_2/Texture_5_roughness.outputs:g>
-            float inputs:metallic.connect = </Material_2/Texture_5_metallic.outputs:b>
-            float inputs:opacity = 1
-            int inputs:useSpecularWorkflow = 0
-            token outputs:surface
-        }
-        token outputs:surface.connect = </Material_2/PreviewSurface.outputs:surface>
-        token inputs:frame:stPrimvarName = "st"
-        def Shader "uvReader_st"
-        {
-            uniform token info:id = "UsdPrimvarReader_float2"
-            token inputs:varname.connect = </Material_2.inputs:frame:stPrimvarName>
-            float2 inputs:fallback = (0.0, 0.0)
-            float2 outputs:result
-        }
-
-      def Shader "Transform2d_diffuse" (
-          sdrMetadata = {
-              string role = "math"
-          }
-      )
-      {
-          uniform token info:id = "UsdTransform2d"
-          float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
-          float2 inputs:scale = (1, 1)
-          float2 inputs:translation = (0, 0)
-          float2 outputs:result
-      }
-      def Shader "Texture_4_diffuse"
-      {
-          uniform token info:id = "UsdUVTexture"
-          asset inputs:file = @textures/Texture_4_ffffff.png@
-          float2 inputs:st.connect = </Material_2/Transform2d_diffuse.outputs:result>
-          token inputs:wrapS = "repeat"
-          token inputs:wrapT = "repeat"
-          float outputs:r
-          float outputs:g
-          float outputs:b
-          float3 outputs:rgb
-      }
-
-      def Shader "Transform2d_normal" (
-          sdrMetadata = {
-              string role = "math"
-          }
-      )
-      {
-          uniform token info:id = "UsdTransform2d"
-          float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
-          float2 inputs:scale = (1, 1)
-          float2 inputs:translation = (0, 0)
-          float2 outputs:result
-      }
-      def Shader "Texture_6_normal"
-      {
-          uniform token info:id = "UsdUVTexture"
-          asset inputs:file = @textures/Texture_6.png@
-          float2 inputs:st.connect = </Material_2/Transform2d_normal.outputs:result>
-          token inputs:wrapS = "repeat"
-          token inputs:wrapT = "repeat"
-          float outputs:r
-          float outputs:g
-          float outputs:b
-          float3 outputs:rgb
-      }
-
-      def Shader "Transform2d_occlusion" (
-          sdrMetadata = {
-              string role = "math"
-          }
-      )
-      {
-          uniform token info:id = "UsdTransform2d"
-          float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
-          float2 inputs:scale = (1, 1)
-          float2 inputs:translation = (0, 0)
-          float2 outputs:result
-      }
-      def Shader "Texture_5_occlusion"
-      {
-          uniform token info:id = "UsdUVTexture"
-          asset inputs:file = @textures/Texture_5.png@
-          float2 inputs:st.connect = </Material_2/Transform2d_occlusion.outputs:result>
-          token inputs:wrapS = "repeat"
-          token inputs:wrapT = "repeat"
-          float outputs:r
-          float outputs:g
-          float outputs:b
-          float3 outputs:rgb
-      }
-
-      def Shader "Transform2d_roughness" (
-          sdrMetadata = {
-              string role = "math"
-          }
-      )
-      {
-          uniform token info:id = "UsdTransform2d"
-          float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
-          float2 inputs:scale = (1, 1)
-          float2 inputs:translation = (0, 0)
-          float2 outputs:result
-      }
-      def Shader "Texture_5_roughness"
-      {
-          uniform token info:id = "UsdUVTexture"
-          asset inputs:file = @textures/Texture_5.png@
-          float2 inputs:st.connect = </Material_2/Transform2d_roughness.outputs:result>
-          token inputs:wrapS = "repeat"
-          token inputs:wrapT = "repeat"
-          float outputs:r
-          float outputs:g
-          float outputs:b
-          float3 outputs:rgb
-      }
-
-      def Shader "Transform2d_metallic" (
-          sdrMetadata = {
-              string role = "math"
-          }
-      )
-      {
-          uniform token info:id = "UsdTransform2d"
-          float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
-          float2 inputs:scale = (1, 1)
-          float2 inputs:translation = (0, 0)
-          float2 outputs:result
-      }
-      def Shader "Texture_5_metallic"
-      {
-          uniform token info:id = "UsdUVTexture"
-          asset inputs:file = @textures/Texture_5.png@
-          float2 inputs:st.connect = </Material_2/Transform2d_metallic.outputs:result>
-          token inputs:wrapS = "repeat"
-          token inputs:wrapT = "repeat"
-          float outputs:r
-          float outputs:g
-          float outputs:b
-          float3 outputs:rgb
-      }
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor.connect = </Material_2/Texture_4_diffuse.outputs:rgb>
+        float inputs:metallic.connect = </Material_2/Texture_5_metallic.outputs:b>
+        normal3f inputs:normal.connect = </Material_2/Texture_6_normal.outputs:rgb>
+        float inputs:occlusion.connect = </Material_2/Texture_5_occlusion.outputs:r>
+        float inputs:opacity = 1
+        float inputs:roughness.connect = </Material_2/Texture_5_roughness.outputs:g>
+        int inputs:useSpecularWorkflow = 0
+        token outputs:surface
     }
 
+    def Shader "uvReader_st"
+    {
+        uniform token info:id = "UsdPrimvarReader_float2"
+        float2 inputs:fallback = (0, 0)
+        token inputs:varname.connect = </Material_2.inputs:frame:stPrimvarName>
+        float2 outputs:result
+    }
+
+    def Shader "Transform2d_diffuse" (
+        sdrMetadata = {
+            string role = "math"
+        }
+    )
+    {
+        uniform token info:id = "UsdTransform2d"
+        float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
+        float2 inputs:scale = (1, 1)
+        float2 inputs:translation = (0, 0)
+        float2 outputs:result
+    }
+
+    def Shader "Texture_4_diffuse"
+    {
+        uniform token info:id = "UsdUVTexture"
+        asset inputs:file = @textures/Texture_4_ffffff.png@
+        float2 inputs:st.connect = </Material_2/Transform2d_diffuse.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:b
+        float outputs:g
+        float outputs:r
+        float3 outputs:rgb
+    }
+
+    def Shader "Transform2d_normal" (
+        sdrMetadata = {
+            string role = "math"
+        }
+    )
+    {
+        uniform token info:id = "UsdTransform2d"
+        float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
+        float2 inputs:scale = (1, 1)
+        float2 inputs:translation = (0, 0)
+        float2 outputs:result
+    }
+
+    def Shader "Texture_6_normal"
+    {
+        uniform token info:id = "UsdUVTexture"
+        asset inputs:file = @textures/Texture_6.png@
+        float2 inputs:st.connect = </Material_2/Transform2d_normal.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:b
+        float outputs:g
+        float outputs:r
+        float3 outputs:rgb
+    }
+
+    def Shader "Transform2d_occlusion" (
+        sdrMetadata = {
+            string role = "math"
+        }
+    )
+    {
+        uniform token info:id = "UsdTransform2d"
+        float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
+        float2 inputs:scale = (1, 1)
+        float2 inputs:translation = (0, 0)
+        float2 outputs:result
+    }
+
+    def Shader "Texture_5_occlusion"
+    {
+        uniform token info:id = "UsdUVTexture"
+        asset inputs:file = @textures/Texture_5.png@
+        float2 inputs:st.connect = </Material_2/Transform2d_occlusion.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:b
+        float outputs:g
+        float outputs:r
+        float3 outputs:rgb
+    }
+
+    def Shader "Transform2d_roughness" (
+        sdrMetadata = {
+            string role = "math"
+        }
+    )
+    {
+        uniform token info:id = "UsdTransform2d"
+        float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
+        float2 inputs:scale = (1, 1)
+        float2 inputs:translation = (0, 0)
+        float2 outputs:result
+    }
+
+    def Shader "Texture_5_roughness"
+    {
+        uniform token info:id = "UsdUVTexture"
+        asset inputs:file = @textures/Texture_5.png@
+        float2 inputs:st.connect = </Material_2/Transform2d_roughness.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:b
+        float outputs:g
+        float outputs:r
+        float3 outputs:rgb
+    }
+
+    def Shader "Transform2d_metallic" (
+        sdrMetadata = {
+            string role = "math"
+        }
+    )
+    {
+        uniform token info:id = "UsdTransform2d"
+        float2 inputs:in.connect = </Material_2/uvReader_st.outputs:result>
+        float2 inputs:scale = (1, 1)
+        float2 inputs:translation = (0, 0)
+        float2 outputs:result
+    }
+
+    def Shader "Texture_5_metallic"
+    {
+        uniform token info:id = "UsdUVTexture"
+        asset inputs:file = @textures/Texture_5.png@
+        float2 inputs:st.connect = </Material_2/Transform2d_metallic.outputs:result>
+        token inputs:wrapS = "repeat"
+        token inputs:wrapT = "repeat"
+        float outputs:b
+        float outputs:g
+        float outputs:r
+        float3 outputs:rgb
+    }
+}
 

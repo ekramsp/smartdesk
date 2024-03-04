@@ -14,23 +14,26 @@ struct SmartDeskApp: App {
     var body: some Scene {
         WindowGroup() {
            HomeWindowView()
-               .frame(
-                    minWidth: 1000,
-                    maxWidth: 1200,
-                    minHeight: 500,
-                    maxHeight: 1200
-                 )
+                .frame(maxWidth: 800,maxHeight: 100)
         }
         .windowStyle(.plain)
-        .windowResizability(.contentSize)
         
-        WindowGroup(id: Constants.NOTE_WINDOW_ID) {
-          NoteWindowView()
+        WindowGroup(id: Constants.NOTE_WINDOW_ID , for: String.self) { $sceneName in
+            if let sceneName {
+                NoteWindowView(sceneName: sceneName)
+            }
         }
-        .windowStyle(.volumetric)
+        .windowStyle(.plain)
+        
+        WindowGroup(id: Constants.CLOCK_WINDOW_ID, for: String.self) { $sceneName in
+            if let sceneName {
+                ClockWindowView(sceneName: sceneName)
+            }
+        }
+        .windowStyle(.plain)
         
         ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
+          ImmersiveView()
         }
     }
 }

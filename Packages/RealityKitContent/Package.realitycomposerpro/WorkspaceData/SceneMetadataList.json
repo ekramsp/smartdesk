@@ -108,6 +108,18 @@
       }
     ]
   },
+  "27784C16-CDB9-41F3-8EB9-21713870E087" : {
+    "objectMetadataList" : [
+      [
+        "27784C16-CDB9-41F3-8EB9-21713870E087",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "95052448-183C-40B5-9E52-3717AF9B48FA" : {
     "objectMetadataList" : [
       [
@@ -134,25 +146,6 @@
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "toy_car"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Earth",
-        "geom"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root"
       ],
       {
@@ -162,8 +155,7 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "alarm_clock",
-        "Meshes"
+        "toy_car"
       ],
       {
         "isExpanded" : true,
@@ -182,7 +174,8 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "Table"
+        "model",
+        "RootNode"
       ],
       {
         "isExpanded" : true,
@@ -194,7 +187,17 @@
         "Earth",
         "geom",
         "realistic",
-        "materials"
+        "geo"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "alarm_clock",
+        "Meshes"
       ],
       {
         "isExpanded" : true,
@@ -217,8 +220,7 @@
         "Earth",
         "geom",
         "realistic",
-        "geo",
-        "lod0"
+        "materials"
       ],
       {
         "isExpanded" : true,
@@ -230,7 +232,8 @@
         "Earth",
         "geom",
         "realistic",
-        "geo"
+        "geo",
+        "lod0"
       ],
       {
         "isExpanded" : true,
@@ -239,8 +242,17 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "model",
-        "RootNode"
+        "Earth",
+        "geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Table"
       ],
       {
         "isExpanded" : true,

@@ -11,17 +11,15 @@ import RealityKitContent
 
 struct NoteWindowView: View {
   //  let component = MyComponent()
+    @State var sceneName: String
+    
     var body: some View {
-        RealityView { content in
-            // Add the initial RealityKit content
-            if let scene = try? await Entity(named: "Scene", in: realityKitContentBundle) {
-                content.add(scene)
-            }
-        }
+        Text("Note")
+            .font(.largeTitle)
     }
 }
 
 #Preview {
-    NoteWindowView()
+    NoteWindowView(sceneName: "notes")
 }
 

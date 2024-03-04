@@ -22,4 +22,12 @@ extension View {
                     .stroke(.white.opacity(0.7),lineWidth: 4)
             ).mask(RoundedRectangle(cornerRadius: 40))
     }
+    @ViewBuilder
+    func isHidden(hide: Bool)-> some View {
+        if hide {
+            EmptyView()
+        } else {
+            self
+        }
+    }
 }
