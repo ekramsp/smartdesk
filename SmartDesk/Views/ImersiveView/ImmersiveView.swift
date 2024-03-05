@@ -57,14 +57,17 @@ struct ImmersiveView: View {
             /// add attachment here
             ///
             Attachment(id: Constants.attachmentNoteId) {
-                AttachmentsView(attachmentsTag: $attachmentTagNote)
-                    .isHidden(hide: !showAttachMentNote)
+                withAnimation(.easeOut(duration: 0.5)) {
+                    AttachmentsView(attachmentsTag: $attachmentTagNote)
+                        .isHidden(hide: !showAttachMentNote)
+                }
             }
             Attachment(id: Constants.attachmentClockId) {
-                AttachmentsView(attachmentsTag: $attachmentTagClock)
-                    .isHidden(hide: !showAttachMentClock)
+                withAnimation(.easeOut(duration: 0.3)) {
+                    AttachmentsView(attachmentsTag: $attachmentTagClock)
+                        .isHidden(hide: !showAttachMentClock)
+                }
             }
-            
         }
         .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded({ value in
             if value.entity.name == Constants.note{

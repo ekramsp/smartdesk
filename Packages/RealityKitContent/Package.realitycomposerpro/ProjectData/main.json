@@ -18,6 +18,7 @@
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/MaplePlywood.usdz" : "8DCA50C1-FE18-488D-A652-5BD190A1E8EA",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Materials\/GridMaterial.usda" : "3AA1E8E7-67FF-4FA3-824C-1ED3C007A4A9",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/model.usda" : "680B06CC-23A4-407B-A880-8B403A429AE3",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/promodoro.dataset\/promodoro.usdz" : "39659911-68E1-4A0E-A160-6E693DB23EDC",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/promodoro.usdz" : "F715517B-1DFC-40AE-8B9D-E8CEBE84B375",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Scene.usda" : "D66134B1-3681-4A8E-AFE5-29F257229F3B",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Showrd\/sword.usda" : "A3552973-6EE7-4B8C-B75C-F0F0A2C27EE9",
@@ -26,6 +27,7 @@
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table.usda" : "7070C73A-AC36-4220-9E5D-402837183E29",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table\/geometries\/Geometry_1.usd" : "42A0BC17-9199-4C60-AD58-0587E5A062E1",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table\/model.usda" : "AAAA8DAF-5A95-471D-8878-15CA26CDC7D8",
-    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table\/Table.usda" : "58F5DD6F-E716-42AE-BE20-B4AFEBD2A23F"
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table\/Table.usda" : "58F5DD6F-E716-42AE-BE20-B4AFEBD2A23F",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Table\/TableGeometries\/TableGeometry_1.usd" : "77E76981-CEB2-451F-8804-DFF5479455A4"
   }
 }

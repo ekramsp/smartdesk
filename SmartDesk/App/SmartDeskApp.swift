@@ -10,7 +10,9 @@ import os
 
 @main
 struct SmartDeskApp: App {
-
+    
+    @State var noteViewModel = NoteViewModel()
+    
     var body: some Scene {
         WindowGroup() {
            HomeWindowView()
@@ -21,6 +23,7 @@ struct SmartDeskApp: App {
         WindowGroup(id: Constants.NOTE_WINDOW_ID , for: String.self) { $sceneName in
             if let sceneName {
                 NoteWindowView(sceneName: sceneName)
+                    .environment(noteViewModel)
             }
         }
         .windowStyle(.plain)
