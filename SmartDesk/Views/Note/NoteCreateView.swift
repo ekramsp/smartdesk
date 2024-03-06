@@ -8,49 +8,58 @@
 import SwiftUI
 
 struct NoteCreateView: View {
-    var noteModel: NoteModel
+    
+    @State var note: Note?
     @State var noteBody = ""
     @State var noteTitle = ""
+    //This will find the noteViewModel that is previously attached with this view
     @Environment(NoteViewModel.self) private var noteViewModel: NoteViewModel
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ScrollView {
             TextField("New Node", text: $noteBody, axis: .vertical)
                 .font(.system(size: 40))
                 .multilineTextAlignment(.leading)
                 .onAppear {
-                    noteBody = noteModel.body
-                    noteTitle = noteModel.title
+                    if let _note = note {
+                        noteBody = _note.body
+                        noteTitle = _note.title
+                    }
                 }.onDisappear {
-                    if noteModel.body != noteBody || noteModel.title != noteTitle {
-                        if let index = noteViewModel.noteModel.firstIndex(where: { $0.id == noteModel.id }) {
-                            noteViewModel.noteModel[index] = NoteModel(title: noteTitle, body: noteBody, creationTime: .now)
-                        } else {
-                            if noteTitle.isEmpty {
-                                noteTitle = String(noteBody.prefix(10))
-                                print(noteTitle)
-                                noteViewModel.noteModel.insert(NoteModel(title: noteTitle, body: noteBody, creationTime: .now), at: 0)
-                            } else {
-                                noteViewModel.noteModel.insert(NoteModel(title: noteTitle, body: noteBody, creationTime: .now), at: 0)
+                    if let _note = note {
+                        if _note.body != noteBody || _note.title != noteTitle {
+                            if !noteBody.isEmpty {
+                                _note.title = noteTitle.isEmpty ? String(noteBody.prefix(10)) : noteTitle
+                                _note.body = noteBody
+                                _note.creationTime = .now
+                                noteViewModel.updateNote(note: _note)
                             }
-                           
                         }
+                    } else {
+                        if !noteBody.isEmpty {
+                            noteViewModel.addToNote(
+                                note: Note(
+                                    title: noteTitle.isEmpty ? String(noteBody.prefix(10)) : noteTitle,
+                                    body: noteBody,
+                                    creationTime: .now)
+                            )
+                        }
+                       
                     }
                 }.frame(maxWidth: .infinity , maxHeight: .infinity)
         }
-        .padding(.leading, 30)
+        .padding(.leading, 40)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                HStack(spacing: 10) {
                     TextField("Tittle", text: $noteTitle)
                         .font(.largeTitle)
-                }
-                
+                        .padding(.leading, 15)
             }
         }
     }
 }
 
 #Preview {
-    NoteCreateView(noteModel: NoteModel(title: "", body: "", creationTime: .now))
+    NoteCreateView(note: Note(title: "", body: "", creationTime: .now))
 }

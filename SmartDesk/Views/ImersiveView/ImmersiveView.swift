@@ -15,7 +15,7 @@ struct ImmersiveView: View {
     @State private var showAttachMentClock = false
     @State private var showAttachMentNote = false
     @State private var viewModel = ImersiveViewModel()
-    
+    //
     @State var attachmentTagNote = [
         AttachmentTag(label: "Notes", windowType: .note, windowID: Constants.NOTE_WINDOW_ID, isSelected: false),
         AttachmentTag(label: "Close", windowType: .close,windowID: Constants.NOTE_WINDOW_ID, isSelected: false),
@@ -28,6 +28,7 @@ struct ImmersiveView: View {
     ]
     
     var body: some View {
+        
         RealityView { contents, attachments in
             //add content
             do {
@@ -36,32 +37,43 @@ struct ImmersiveView: View {
                 // add parent to content
                 viewModel.rootEntity = entity
                 // adding anchor to entity
-                let anchor = AnchorEntity(world: .zero)
-                anchor.anchoring.trackingMode = .continuous
-                anchor.addChild(entity)
-                contents.add(anchor)
-                anchor.position = SIMD3<Float>(0, 0, -2)
+                let anchor = AnchorEntity(world: .zero) // this set model y axis to zero
+                anchor.anchoring.trackingMode = .once // this will computed only once
+                anchor.addChild(entity)  // add the entity to anchor entity as a child entity
+                contents.add(anchor) // adding anchor to the content
+                anchor.position = SIMD3<Float>(0, 0, -2) // set the scaller value of the model
             } catch {
                 print("Error in RealityView's make: \(error)")
             }
-        } update: { contents , attachments in
+            
+        } update: { contents , attachments in  // this will change the view state
+            
+            // set the attachMentEntity for note
             guard let attachmentEntityNote = attachments.entity(for: Constants.attachmentNoteId) else {return}
+            // set the attachMentEntity for clock
             guard let attachmentEntityClock = attachments.entity(for: Constants.attachmentClockId) else {return}
+            //Findout the note entity from rootEntity
             guard let note = viewModel.rootEntity?.findEntity(named: Constants.note) else {return}
+            //Findout the clock entity from rootEntity
             guard let clock = viewModel.rootEntity?.findEntity(named: Constants.clock) else {return}
+            //Setting the position of note attachment relative to note
             attachmentEntityNote.setPosition([0, 200 , -100], relativeTo: note)
+            //Setting the position of note attachment relative to clock
             attachmentEntityClock.setPosition([0, 300 , 250], relativeTo: clock)
+            // Setting the attachments to the rootEntity
             viewModel.rootEntity?.addChild(attachmentEntityNote)
             viewModel.rootEntity?.addChild(attachmentEntityClock)
+            
         } attachments: {
             /// add attachment here
-            ///
+            // Adding attachment for note
             Attachment(id: Constants.attachmentNoteId) {
                 withAnimation(.easeOut(duration: 0.5)) {
                     AttachmentsView(attachmentsTag: $attachmentTagNote)
                         .isHidden(hide: !showAttachMentNote)
                 }
             }
+            // Adding attachment for clock
             Attachment(id: Constants.attachmentClockId) {
                 withAnimation(.easeOut(duration: 0.3)) {
                     AttachmentsView(attachmentsTag: $attachmentTagClock)
@@ -69,7 +81,8 @@ struct ImmersiveView: View {
                 }
             }
         }
-        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded({ value in
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded({ value in  //this will trigger action to any entity after the gesture end
+            // check the note name and toogle the attachment state
             if value.entity.name == Constants.note{
                 logger.debug("!101: ImmersiveView() tapped on note")
                 showAttachMentNote.toggle()

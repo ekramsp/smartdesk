@@ -17,7 +17,7 @@ enum WindowType  {
 
 struct AttachmentTag: Hashable {
     let label: String
-    let windowType: WindowType
+    var windowType: WindowType
     let windowID: String
     var isSelected = false
 }
@@ -25,6 +25,7 @@ struct AttachmentTag: Hashable {
 struct AttachmentsView: View {
     
     @Binding var attachmentsTag: [AttachmentTag]
+    //This is a property wrapper to read a value which is stored in views environment
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissWindow) private var dissmissWindow
     
@@ -43,6 +44,7 @@ struct AttachmentsView: View {
                                 openWindow(id: attachmentsTag[i].windowID, value: attachmentsTag[i].label)
                             case .close:
                                 dissmissWindow(id: attachmentsTag[i].windowID)
+                                self.toggleSelection(index: i)
                             }
                         }) {
                             Text(attachmentsTag[i].label)
@@ -67,7 +69,7 @@ struct AttachmentsView: View {
             }
         }
         .roundedBorder()
-        .frame(width: 950 ,height: 150)
+        .frame(width: CGFloat(attachmentsTag.count) * 300 ,height: 150)
     }
     
     private func toggleSelection(index: Int) {
@@ -75,6 +77,7 @@ struct AttachmentsView: View {
             if i == index {
                 attachmentsTag[i].isSelected.toggle()
             } else {
+                
                 attachmentsTag[i].isSelected = false
             }
         }

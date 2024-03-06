@@ -12,12 +12,14 @@
 		896320902B958E7C0059B1CD /* ClockWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963208F2B958E7C0059B1CD /* ClockWindowView.swift */; };
 		896320922B9591B40059B1CD /* HomeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896320912B9591B40059B1CD /* HomeWindowView.swift */; };
 		896320942B9591CC0059B1CD /* HomeWindowTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896320932B9591CC0059B1CD /* HomeWindowTitleView.swift */; };
-		896320982B95B6610059B1CD /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896320972B95B6610059B1CD /* NoteModel.swift */; };
+		896320982B95B6610059B1CD /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896320972B95B6610059B1CD /* Note.swift */; };
 		8963209C2B95C3320059B1CD /* NoteCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963209B2B95C3320059B1CD /* NoteCreateView.swift */; };
 		8963209E2B95CB8B0059B1CD /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963209D2B95CB8B0059B1CD /* NoteViewModel.swift */; };
 		8969672F2B95681B00CB03C0 /* AttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969672E2B95681B00CB03C0 /* AttachmentsView.swift */; };
 		8992592A2B8DA29500998620 /* NoteWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899259292B8DA29500998620 /* NoteWindowView.swift */; };
 		8992592C2B8DA69100998620 /* SmartDeskBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992592B2B8DA69100998620 /* SmartDeskBackgroundView.swift */; };
+		89A013F62B96D99100019197 /* NoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A013F52B96D99100019197 /* NoteRepository.swift */; };
+		89A013F82B96DD3B00019197 /* NoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A013F72B96DD3B00019197 /* NoteDataSource.swift */; };
 		89A3E5482B931474000FDB33 /* ImersiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A3E5472B931474000FDB33 /* ImersiveViewModel.swift */; };
 		89B445FE2B844B5C00966BD5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 89B445FD2B844B5C00966BD5 /* RealityKitContent */; };
 		89B446002B844B5C00966BD5 /* SmartDeskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B445FF2B844B5C00966BD5 /* SmartDeskApp.swift */; };
@@ -33,12 +35,14 @@
 		8963208F2B958E7C0059B1CD /* ClockWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowView.swift; sourceTree = "<group>"; };
 		896320912B9591B40059B1CD /* HomeWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWindowView.swift; sourceTree = "<group>"; };
 		896320932B9591CC0059B1CD /* HomeWindowTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWindowTitleView.swift; sourceTree = "<group>"; };
-		896320972B95B6610059B1CD /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		896320972B95B6610059B1CD /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		8963209B2B95C3320059B1CD /* NoteCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreateView.swift; sourceTree = "<group>"; };
 		8963209D2B95CB8B0059B1CD /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		8969672E2B95681B00CB03C0 /* AttachmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsView.swift; sourceTree = "<group>"; };
 		899259292B8DA29500998620 /* NoteWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowView.swift; sourceTree = "<group>"; };
 		8992592B2B8DA69100998620 /* SmartDeskBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDeskBackgroundView.swift; sourceTree = "<group>"; };
+		89A013F52B96D99100019197 /* NoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepository.swift; sourceTree = "<group>"; };
+		89A013F72B96DD3B00019197 /* NoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDataSource.swift; sourceTree = "<group>"; };
 		89A3E5472B931474000FDB33 /* ImersiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImersiveViewModel.swift; sourceTree = "<group>"; };
 		89B445F82B844B5C00966BD5 /* SmartDesk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartDesk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B445FC2B844B5C00966BD5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
@@ -82,7 +86,7 @@
 		896320962B95B63E0059B1CD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				896320972B95B6610059B1CD /* NoteModel.swift */,
+				896320972B95B6610059B1CD /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +99,23 @@
 				8963209D2B95CB8B0059B1CD /* NoteViewModel.swift */,
 			);
 			path = Note;
+			sourceTree = "<group>";
+		};
+		89A013F32B96D94B00019197 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				89A013F42B96D96D00019197 /* NoteRepository */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		89A013F42B96D96D00019197 /* NoteRepository */ = {
+			isa = PBXGroup;
+			children = (
+				89A013F52B96D99100019197 /* NoteRepository.swift */,
+				89A013F72B96DD3B00019197 /* NoteDataSource.swift */,
+			);
+			path = NoteRepository;
 			sourceTree = "<group>";
 		};
 		89A3E5462B931452000FDB33 /* ImersiveView */ = {
@@ -131,6 +152,7 @@
 				89F956912B8592B000BD68F1 /* Extensions */,
 				89F9568E2B85921E00BD68F1 /* Common */,
 				89F9568C2B8591C000BD68F1 /* Views */,
+				89A013F32B96D94B00019197 /* Repository */,
 				896320962B95B63E0059B1CD /* Model */,
 				89F956922B8592C200BD68F1 /* Resources */,
 				89B4460A2B844B6A00966BD5 /* Info.plist */,
@@ -278,8 +300,10 @@
 				89A3E5482B931474000FDB33 /* ImersiveViewModel.swift in Sources */,
 				8992592C2B8DA69100998620 /* SmartDeskBackgroundView.swift in Sources */,
 				89380FF72B874DD300A2BE6F /* View+Extension.swift in Sources */,
+				89A013F62B96D99100019197 /* NoteRepository.swift in Sources */,
+				89A013F82B96DD3B00019197 /* NoteDataSource.swift in Sources */,
 				8963209E2B95CB8B0059B1CD /* NoteViewModel.swift in Sources */,
-				896320982B95B6610059B1CD /* NoteModel.swift in Sources */,
+				896320982B95B6610059B1CD /* Note.swift in Sources */,
 				89B446002B844B5C00966BD5 /* SmartDeskApp.swift in Sources */,
 				896320942B9591CC0059B1CD /* HomeWindowTitleView.swift in Sources */,
 				8963209C2B95C3320059B1CD /* NoteCreateView.swift in Sources */,

@@ -8,18 +8,30 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
+import SwiftData
 
 struct NoteWindowView: View {
-    //  let component = MyComponent()
+    
     @State var sceneName: String
-    @Environment(NoteViewModel.self) private var noteViewModel: NoteViewModel
+    @State private var noteViewModel: NoteViewModel
+    ///Model contexts observes all the changed to the models like insert update delete fetch
+    @Environment(\.modelContext) var modelcontext
+    
+    init(sceneName: String, modelcontext: ModelContext) {
+        self.sceneName = sceneName
+        let noteViewModel = NoteViewModel(modelContext: modelcontext)
+        _noteViewModel = State(initialValue: noteViewModel)
+    }
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(noteViewModel.noteModel, id: \.id) { note in
+                ForEach(noteViewModel.notes, id: \.id) { note in
                     NavigationLink {
-                        NoteCreateView(noteModel: note)
+                        NoteCreateView(note: note)
+                             //attaching the view model reference to the NoteCreateView environmet
+                             //environment will stored the referench
+                            .environment(noteViewModel)
                     } label: {
                         VStack(alignment: .leading) {
                             Text(note.title)
@@ -28,9 +40,7 @@ struct NoteWindowView: View {
                                 .font(.title2)
                         }.contextMenu {
                             Button("Delete") {
-                                if let index = noteViewModel.noteModel.firstIndex(where: { $0.id == note.id }) {
-                                    noteViewModel.noteModel.remove(at: index)
-                                }
+                                noteViewModel.deleteNote(note: note)
                             }
                         }
                     }
@@ -38,21 +48,46 @@ struct NoteWindowView: View {
             }.navigationTitle("Notes")
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        NavigationLink(destination: NoteCreateView(noteModel: NoteModel(title: "", body: "", creationTime: .now))) {
+                        NavigationLink {
+                            NoteCreateView()
+                                .environment(noteViewModel)
+                        }label: {
                             Image(systemName: "square.and.pencil")
                                 .font(.title)
                                 .bold()
                         }
                     }
-                }
+                }.onAppear {
+                    noteViewModel.getAllNote()
+                }.overlay(content: {
+                    if noteViewModel.notes.isEmpty {
+                        ContentUnavailableView(label: {
+                            Label("No notes available", systemImage:  "note.text")
+                        }, description: {
+                            Text("Start adding notes to see your list")
+                        }, actions: {
+                            NavigationLink {
+                                NoteCreateView()
+                                    .environment(noteViewModel)
+                            }label: {
+                                Image(systemName: "square.and.pencil")
+                                    .font(.title)
+                                    .bold()
+                            }
+                        })
+                    }
+                })
+                
         }.navigationTitle("Notes")
             .background(
                 SmartDeskBackgroundView()
             ).roundedBorder()
+             
+               
     }
 }
 
-#Preview {
-    NoteWindowView(sceneName: "notes")
-}
+//#Preview {
+//    NoteWindowView(sceneName: "notes")
+//}
 
