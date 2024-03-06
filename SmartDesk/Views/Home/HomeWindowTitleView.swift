@@ -15,8 +15,7 @@ struct HomeWindowTitleView: View {
     
     var body: some View {
         Text(animatedTitle)
-            .font(.system(size: 50,design: .monospaced))
-            .bold()
+            .font(.extraLargeTitle2)
             .foregroundStyle(.white)
             .animation(.easeOut(duration: typeSpeed))
             .onAppear {

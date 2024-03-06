@@ -24,7 +24,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -33,7 +33,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Right"
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -41,10 +41,77 @@
       }
     ]
   },
+  "4FC95567-C0BC-4896-A2DD-46F551834E0B" : {
+    "objectMetadataList" : [
+      [
+        "4FC95567-C0BC-4896-A2DD-46F551834E0B",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "9F900EE2-FC88-46F3-94B2-496E315DC10E" : {
+    "objectMetadataList" : [
+
+    ]
+  },
   "65F6F990-A780-4474-B78B-572E0E4E273D" : {
     "objectMetadataList" : [
       [
         "65F6F990-A780-4474-B78B-572E0E4E273D",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "680B06CC-23A4-407B-A880-8B403A429AE3" : {
+    "objectMetadataList" : [
+
+    ]
+  },
+  "803C14F8-C208-41BA-8D33-5E5EEC7140AC" : {
+    "objectMetadataList" : [
+      [
+        "803C14F8-C208-41BA-8D33-5E5EEC7140AC",
+        "Scene"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "7070C73A-AC36-4220-9E5D-402837183E29" : {
+    "objectMetadataList" : [
+      [
+        "7070C73A-AC36-4220-9E5D-402837183E29",
+        "Scene",
+        "RootNode"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "7070C73A-AC36-4220-9E5D-402837183E29",
+        "Scene"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "27784C16-CDB9-41F3-8EB9-21713870E087" : {
+    "objectMetadataList" : [
+      [
+        "27784C16-CDB9-41F3-8EB9-21713870E087",
         "Root"
       ],
       {
@@ -70,12 +137,90 @@
 
     ]
   },
+  "A3552973-6EE7-4B8C-B75C-F0F0A2C27EE9" : {
+    "objectMetadataList" : [
+
+    ]
+  },
   "D66134B1-3681-4A8E-AFE5-29F257229F3B" : {
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "Sphere"
+        "Earth",
+        "geom",
+        "realistic",
+        "materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Folding_Table",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "model",
+        "RootNode"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Table"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Table",
+        "RootNode"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Earth",
+        "geom",
+        "realistic",
+        "geo"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Earth",
+        "geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "toy_car"
       ],
       {
         "isExpanded" : true,
@@ -84,6 +229,40 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "alarm_clock",
+        "Meshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Earth",
+        "geom",
+        "realistic"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Earth",
+        "geom",
+        "realistic",
+        "geo",
+        "lod0"
       ],
       {
         "isExpanded" : true,
