@@ -365,6 +365,7 @@ def Xform "Root" (
             references = @promodoro.dataset/promodoro.usdz@
         )
         {
+            reorder nameChildren = ["mixkit_digital_clock_digital_alarm_buzzer_992_wav", "CarAlarm", "Materials", "Meshes", "Collider", "InputTarget"]
             float3 xformOp:scale = (0.001, 0.001, 0.001)
             float3 xformOp:translate = (0, 0.75, 0.25)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
@@ -392,6 +393,16 @@ def Xform "Root" (
             def RealityKitComponent "InputTarget"
             {
                 uniform token info:id = "RealityKit.InputTarget"
+            }
+
+            def "CarAlarm" (
+                active = true
+                prepend references = @CarAlarm.usdz@
+            )
+            {
+                uniform token calibrationMode = "absolute"
+                uniform token loadingStrategy = "Preload"
+                uniform bool shouldLoop = 1
             }
         }
 

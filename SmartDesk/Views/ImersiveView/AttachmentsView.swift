@@ -77,7 +77,6 @@ struct AttachmentsView: View {
             if i == index {
                 attachmentsTag[i].isSelected.toggle()
             } else {
-                
                 attachmentsTag[i].isSelected = false
             }
         }

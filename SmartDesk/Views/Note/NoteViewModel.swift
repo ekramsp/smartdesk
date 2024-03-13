@@ -10,11 +10,10 @@ import SwiftData
 
 @Observable
 class NoteViewModel {
-    
     var notes: [Note] = []
     var noteRepository: NoteRepository?
     
-   init(modelContext: ModelContext) {
+    init(modelContext: ModelContext) {
         noteRepository = NoteDataRepository(modelContext: modelContext)
     }
         
@@ -59,7 +58,7 @@ class NoteViewModel {
         switch (result) {
         case .success(let flag):
            print(flag)
-            //getAllNote()
+            getAllNote()
         case .failure(let error):
             print("!401: deleteNote(): Failed to delete note. Error: " + error.localizedDescription)
         }

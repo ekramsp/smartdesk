@@ -11,10 +11,10 @@ import SwiftData
 
 @main
 struct SmartDeskApp: App {
-    //Provides the persistant backend for model types
+    //Provides the persistant backend for model types From this IIFE(IMideately invoked function expression)
     //set the model container for managing schema and necessary configuration
     let container: ModelContainer = {
-        let schema = Schema([Note.self]) //Initialize schema with model
+        let schema = Schema([Note.self, Alarm.self]) //Initialize schema with model
         do {
             //Here configuration can be added to help swift data to decide
             //where the database is stored it can be cloud kit or others
@@ -25,6 +25,8 @@ struct SmartDeskApp: App {
             fatalError("!100 Datasource: Failed to initialize ModelContainer: \(error)")
         }
     }()
+    
+    @State private var imersiveViewModel = ImersiveViewModel()
     
     var body: some Scene {
         WindowGroup() {
@@ -47,10 +49,12 @@ struct SmartDeskApp: App {
             }
         }
         .windowStyle(.plain)
+        .environment(imersiveViewModel)
+        .modelContainer(container)
         
         ImmersiveSpace(id: "ImmersiveSpace") {
           ImmersiveView()
-        }
+        }.environment(imersiveViewModel)
     }
 }
 //Global logger

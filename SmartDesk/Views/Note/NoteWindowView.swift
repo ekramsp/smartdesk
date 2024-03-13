@@ -36,7 +36,7 @@ struct NoteWindowView: View {
                         VStack(alignment: .leading) {
                             Text(note.title)
                                 .font(.largeTitle)
-                            Text(note.creationTime.ISO8601Format())
+                            Text(note.creationTime.formatted(Date.FormatStyle().day().month().year()))
                                 .font(.title2)
                         }.contextMenu {
                             Button("Delete") {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8901E46B2B9EFED800D29BE3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8901E46A2B9EFED800D29BE3 /* Alarm.swift */; };
 		89380FF52B873BF200A2BE6F /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89380FF42B873BF200A2BE6F /* Color+Extension.swift */; };
 		89380FF72B874DD300A2BE6F /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89380FF62B874DD300A2BE6F /* View+Extension.swift */; };
 		896320902B958E7C0059B1CD /* ClockWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963208F2B958E7C0059B1CD /* ClockWindowView.swift */; };
@@ -16,6 +17,7 @@
 		8963209C2B95C3320059B1CD /* NoteCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963209B2B95C3320059B1CD /* NoteCreateView.swift */; };
 		8963209E2B95CB8B0059B1CD /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963209D2B95CB8B0059B1CD /* NoteViewModel.swift */; };
 		8969672F2B95681B00CB03C0 /* AttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969672E2B95681B00CB03C0 /* AttachmentsView.swift */; };
+		8986CBDC2B998CF8008A5AEA /* ClockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8986CBDB2B998CF8008A5AEA /* ClockViewModel.swift */; };
 		8992592A2B8DA29500998620 /* NoteWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899259292B8DA29500998620 /* NoteWindowView.swift */; };
 		8992592C2B8DA69100998620 /* SmartDeskBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992592B2B8DA69100998620 /* SmartDeskBackgroundView.swift */; };
 		89A013F62B96D99100019197 /* NoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A013F52B96D99100019197 /* NoteRepository.swift */; };
@@ -26,10 +28,13 @@
 		89B446042B844B5C00966BD5 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B446032B844B5C00966BD5 /* ImmersiveView.swift */; };
 		89B446062B844B6A00966BD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B446052B844B6A00966BD5 /* Assets.xcassets */; };
 		89B446092B844B6A00966BD5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B446082B844B6A00966BD5 /* Preview Assets.xcassets */; };
+		89CC0D5F2BA00E0E00E49404 /* AlarmSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC0D5E2BA00E0E00E49404 /* AlarmSwitchView.swift */; };
+		89CC0D612BA00E4200E49404 /* AlarmCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC0D602BA00E4200E49404 /* AlarmCreateView.swift */; };
 		89F956982B85F2C400BD68F1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F956972B85F2C400BD68F1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8901E46A2B9EFED800D29BE3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		89380FF42B873BF200A2BE6F /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		89380FF62B874DD300A2BE6F /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		8963208F2B958E7C0059B1CD /* ClockWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowView.swift; sourceTree = "<group>"; };
@@ -39,6 +44,7 @@
 		8963209B2B95C3320059B1CD /* NoteCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreateView.swift; sourceTree = "<group>"; };
 		8963209D2B95CB8B0059B1CD /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		8969672E2B95681B00CB03C0 /* AttachmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsView.swift; sourceTree = "<group>"; };
+		8986CBDB2B998CF8008A5AEA /* ClockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewModel.swift; sourceTree = "<group>"; };
 		899259292B8DA29500998620 /* NoteWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowView.swift; sourceTree = "<group>"; };
 		8992592B2B8DA69100998620 /* SmartDeskBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartDeskBackgroundView.swift; sourceTree = "<group>"; };
 		89A013F52B96D99100019197 /* NoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepository.swift; sourceTree = "<group>"; };
@@ -51,6 +57,8 @@
 		89B446052B844B6A00966BD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89B446082B844B6A00966BD5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		89B4460A2B844B6A00966BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89CC0D5E2BA00E0E00E49404 /* AlarmSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSwitchView.swift; sourceTree = "<group>"; };
+		89CC0D602BA00E4200E49404 /* AlarmCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCreateView.swift; sourceTree = "<group>"; };
 		89F956972B85F2C400BD68F1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				8963208F2B958E7C0059B1CD /* ClockWindowView.swift */,
+				8986CBDB2B998CF8008A5AEA /* ClockViewModel.swift */,
+				89CC0D5E2BA00E0E00E49404 /* AlarmSwitchView.swift */,
+				89CC0D602BA00E4200E49404 /* AlarmCreateView.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -87,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				896320972B95B6610059B1CD /* Note.swift */,
+				8901E46A2B9EFED800D29BE3 /* Alarm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F956982B85F2C400BD68F1 /* Constants.swift in Sources */,
+				89CC0D612BA00E4200E49404 /* AlarmCreateView.swift in Sources */,
 				896320902B958E7C0059B1CD /* ClockWindowView.swift in Sources */,
 				89A3E5482B931474000FDB33 /* ImersiveViewModel.swift in Sources */,
 				8992592C2B8DA69100998620 /* SmartDeskBackgroundView.swift in Sources */,
@@ -307,11 +320,14 @@
 				89B446002B844B5C00966BD5 /* SmartDeskApp.swift in Sources */,
 				896320942B9591CC0059B1CD /* HomeWindowTitleView.swift in Sources */,
 				8963209C2B95C3320059B1CD /* NoteCreateView.swift in Sources */,
+				8901E46B2B9EFED800D29BE3 /* Alarm.swift in Sources */,
 				8969672F2B95681B00CB03C0 /* AttachmentsView.swift in Sources */,
+				89CC0D5F2BA00E0E00E49404 /* AlarmSwitchView.swift in Sources */,
 				896320922B9591B40059B1CD /* HomeWindowView.swift in Sources */,
 				89380FF52B873BF200A2BE6F /* Color+Extension.swift in Sources */,
 				89B446042B844B5C00966BD5 /* ImmersiveView.swift in Sources */,
 				8992592A2B8DA29500998620 /* NoteWindowView.swift in Sources */,
+				8986CBDC2B998CF8008A5AEA /* ClockViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

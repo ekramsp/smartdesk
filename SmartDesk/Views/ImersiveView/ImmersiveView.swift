@@ -14,7 +14,7 @@ struct ImmersiveView: View {
     @State private var noteEntity: Entity? = nil
     @State private var showAttachMentClock = false
     @State private var showAttachMentNote = false
-    @State private var viewModel = ImersiveViewModel()
+    @Environment(ImersiveViewModel.self) private var viewModel
     //
     @State var attachmentTagNote = [
         AttachmentTag(label: "Notes", windowType: .note, windowID: Constants.NOTE_WINDOW_ID, isSelected: false),
@@ -23,9 +23,10 @@ struct ImmersiveView: View {
     
     @State var attachmentTagClock = [
         AttachmentTag(label: "Alarm", windowType: .clock,windowID: Constants.CLOCK_WINDOW_ID,  isSelected: false),
-        AttachmentTag(label: "Poromodoro", windowType: .clock,windowID: Constants.CLOCK_WINDOW_ID,  isSelected: false),
+       // AttachmentTag(label: "Poromodoro", windowType: .clock,windowID: Constants.CLOCK_WINDOW_ID,  isSelected: false),
         AttachmentTag(label: "Close", windowType: .close,windowID: Constants.CLOCK_WINDOW_ID,  isSelected: false),
     ]
+    
     
     var body: some View {
         
@@ -36,6 +37,7 @@ struct ImmersiveView: View {
                 let entity = try await Entity(named: Constants.scene, in: realityKitContentBundle)
                 // add parent to content
                 viewModel.rootEntity = entity
+                viewModel.audioSetUp()
                 // adding anchor to entity
                 let anchor = AnchorEntity(world: .zero) // this set model y axis to zero
                 anchor.anchoring.trackingMode = .once // this will computed only once
@@ -63,7 +65,6 @@ struct ImmersiveView: View {
             // Setting the attachments to the rootEntity
             viewModel.rootEntity?.addChild(attachmentEntityNote)
             viewModel.rootEntity?.addChild(attachmentEntityClock)
-            
         } attachments: {
             /// add attachment here
             // Adding attachment for note
@@ -89,10 +90,16 @@ struct ImmersiveView: View {
             }
             if value.entity.name == Constants.clock {
                 logger.debug("!102: ImmersiveView() tapped on clock")
-                showAttachMentClock.toggle()
+                if viewModel.audioPlayBackController?.isPlaying ?? false {
+                    viewModel.audioPlayBackController?.stop()
+                } else {
+                    showAttachMentClock.toggle()
+                }
             }
         }))
     }
+    
+   
 }
 
 
