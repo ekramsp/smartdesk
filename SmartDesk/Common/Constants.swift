@@ -11,6 +11,15 @@ struct Constants {
     //window id
     static let HOME_WINDOW_ID = "homeWindow"
     static let NOTE_WINDOW_ID = "noteWindow"
-    static let PROMO_DORO_WINDOW_ID = "promoDomeWindow"
+    static let CLOCK_WINDOW_ID = "clockWindow"
     static let ALARM_WINDOW_ID = "alarmWindow"
+    
+    //attachMentid
+    static let attachmentNoteId = "attachmentWithNote"
+    static let attachmentClockId = "attachmentWithClock"
+    
+    //entities name
+    static let scene = "Scene"
+    static let note = "Legal_Pad"
+    static let clock = "promodoro"
 }

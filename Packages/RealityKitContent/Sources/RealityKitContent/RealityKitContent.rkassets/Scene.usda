@@ -5,31 +5,410 @@
     upAxis = "Y"
 )
 
-reorder rootPrims = ["Root", "GridMaterial"]
-
-def Xform "Root"
+def Xform "Root" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+)
 {
-    reorder nameChildren = ["GridMaterial", "Sphere"]
+    reorder nameChildren = ["Table", "Legal_Pad"]
     rel material:binding = None (
         bindMaterialAs = "weakerThanDescendants"
     )
 
-    def Sphere "Sphere" (
+    def "Table" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 1.5707963, 0)
+        }
+        references = @Table/Table.usda@</Scene>
     )
     {
-        reorder nameChildren = ["Collider", "InputTarget", "GridMaterial"]
-        rel material:binding = </Root/GridMaterial/GridMaterial> (
+        reorder nameChildren = ["promodoro", "Legal_Pad", "RootNode", "sword"]
+        rel material:binding = None (
             bindMaterialAs = "weakerThanDescendants"
         )
-        double radius = 0.1
-        quatf xformOp:orient = (1, 0, 0, 0)
+        quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0, 0, 0)
+        float3 xformOp:translate = (0, 0, 0.5)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-        def RealityKitComponent "Collider"
+        over "RootNode"
+        {
+            reorder nameChildren = ["TableMaterial_2", "Object014"]
+            over "Object014"
+            {
+                reorder nameChildren = ["TableGeometry_1", "Geometry"]
+                def "TableGeometry_1" (
+                    active = true
+                    references = @Table/TableGeometries/TableGeometry_1.usd@</Geometry>
+                )
+                {
+                    over "Geometry" (
+                        prepend apiSchemas = ["MaterialBindingAPI"]
+                    )
+                    {
+                        rel material:binding = </Root/Table/RootNode/TableMaterial_2> (
+                            bindMaterialAs = "weakerThanDescendants"
+                        )
+                    }
+                }
+            }
+
+            def Material "TableMaterial_2"
+            {
+                token inputs:frame:stPrimvarName = "st" (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-115.5, 89)
+                            float2 sizeInSubgraph = (204, 58)
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface_1.outputs:out>
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (126.5, 113)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (182, 106)
+
+                def Shader "PreviewSurface" (
+                    active = true
+                )
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float inputs:clearcoat = 0
+                    float inputs:clearcoat.connect = </Root/Table/RootNode/TableMaterial_2/clearcoat.outputs:r>
+                    color3f inputs:diffuseColor.connect = </Root/Table/RootNode/TableMaterial_2/diffuseColor.outputs:rgb>
+                    float inputs:metallic.connect = </Root/Table/RootNode/TableMaterial_2/metallic.outputs:r>
+                    normal3f inputs:normal.connect = </Root/Table/RootNode/TableMaterial_2/Texture_6_normal.outputs:rgb>
+                    float inputs:occlusion.connect = </Root/Table/RootNode/TableMaterial_2/Texture_5_occlusion.outputs:r>
+                    float inputs:opacity = 1
+                    float inputs:opacityThreshold
+                    float inputs:roughness = 0.5
+                    float inputs:roughness.connect = </Root/Table/RootNode/TableMaterial_2/roughness.outputs:r>
+                    int inputs:useSpecularWorkflow = 0
+                    token outputs:surface
+                }
+
+                def Shader "uvReader_st"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    float2 inputs:fallback = (0, 0)
+                    token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+
+                def Shader "Transform2d_diffuse" (
+                    sdrMetadata = {
+                        string role = "math"
+                    }
+                )
+                {
+                    uniform token info:id = "UsdTransform2d"
+                    float2 inputs:in.connect = </Root/Table/RootNode/TableMaterial_2/uvReader_st.outputs:result>
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:translation = (0, 0)
+                    float2 outputs:result
+                }
+
+                def Shader "Texture_4_diffuse"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @textures/Texture_4_ffffff.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/Transform2d_diffuse.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:b
+                    float outputs:g
+                    float outputs:r
+                    float3 outputs:rgb
+                }
+
+                def Shader "Transform2d_normal" (
+                    sdrMetadata = {
+                        string role = "math"
+                    }
+                )
+                {
+                    uniform token info:id = "UsdTransform2d"
+                    float2 inputs:in.connect = </Root/Table/RootNode/TableMaterial_2/uvReader_st.outputs:result>
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:translation = (0, 0)
+                    float2 outputs:result
+                }
+
+                def Shader "Texture_6_normal"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @textures/Texture_6.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/Transform2d_normal.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:b
+                    float outputs:g
+                    float outputs:r
+                    float3 outputs:rgb
+                }
+
+                def Shader "Transform2d_occlusion" (
+                    sdrMetadata = {
+                        string role = "math"
+                    }
+                )
+                {
+                    uniform token info:id = "UsdTransform2d"
+                    float2 inputs:in.connect = </Root/Table/RootNode/TableMaterial_2/uvReader_st.outputs:result>
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:translation = (0, 0)
+                    float2 outputs:result
+                }
+
+                def Shader "Texture_5_occlusion"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @textures/Texture_5.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/Transform2d_occlusion.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:b
+                    float outputs:g
+                    float outputs:r
+                    float3 outputs:rgb
+                }
+
+                def Shader "Transform2d_roughness" (
+                    sdrMetadata = {
+                        string role = "math"
+                    }
+                )
+                {
+                    uniform token info:id = "UsdTransform2d"
+                    float2 inputs:in.connect = </Root/Table/RootNode/TableMaterial_2/uvReader_st.outputs:result>
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:translation = (0, 0)
+                    float2 outputs:result
+                }
+
+                def Shader "Texture_5_roughness"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @textures/Texture_5.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/Transform2d_roughness.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:b
+                    float outputs:g
+                    float outputs:r
+                    float3 outputs:rgb
+                }
+
+                def Shader "Transform2d_metallic" (
+                    sdrMetadata = {
+                        string role = "math"
+                    }
+                )
+                {
+                    uniform token info:id = "UsdTransform2d"
+                    float2 inputs:in.connect = </Root/Table/RootNode/TableMaterial_2/uvReader_st.outputs:result>
+                    float2 inputs:scale = (1, 1)
+                    float2 inputs:translation = (0, 0)
+                    float2 outputs:result
+                }
+
+                def Shader "Texture_5_metallic"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @textures/Texture_5.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/Transform2d_metallic.outputs:result>
+                    token inputs:wrapS = "repeat"
+                    token inputs:wrapT = "repeat"
+                    float outputs:b
+                    float outputs:g
+                    float outputs:r
+                    float3 outputs:rgb
+                }
+
+                def Shader "PreviewSurface_1" (
+                    active = false
+                )
+                {
+                    uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-255, 105)
+                    float2 ui:nodegraph:node:size = (161, 211)
+                }
+
+                def Shader "opacityThreshold"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @Table/Tabletextures/TableTexture_4_ffffff.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/opacityThreshold/TexCoordReader.outputs:result>
+                    float outputs:r
+
+                    def Shader "TexCoordReader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.inputs:frame:stPrimvarName>
+                        float2 outputs:result
+                    }
+                }
+
+                def Shader "diffuseColor"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @Table/Tabletextures/TableTexture_4_ffffff.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/diffuseColor/TexCoordReader.outputs:result>
+                    color3f outputs:rgb
+
+                    def Shader "TexCoordReader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.inputs:frame:stPrimvarName>
+                        float2 outputs:result
+                    }
+                }
+
+                def Shader "roughness"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @Table/Tabletextures/TableTexture_5.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/roughness/TexCoordReader.outputs:result>
+                    float outputs:r
+
+                    def Shader "TexCoordReader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.inputs:frame:stPrimvarName>
+                        float2 outputs:result
+                    }
+                }
+
+                def Shader "metallic"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @Table/Tabletextures/TableTexture_6.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/metallic/TexCoordReader.outputs:result>
+                    float outputs:r
+
+                    def Shader "TexCoordReader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.inputs:frame:stPrimvarName>
+                        float2 outputs:result
+                    }
+                }
+
+                def Shader "clearcoat"
+                {
+                    uniform token info:id = "UsdUVTexture"
+                    asset inputs:file = @Table/Tabletextures/TableTexture_6.png@
+                    float2 inputs:st.connect = </Root/Table/RootNode/TableMaterial_2/clearcoat/TexCoordReader.outputs:result>
+                    float outputs:r
+
+                    def Shader "TexCoordReader"
+                    {
+                        uniform token info:id = "UsdPrimvarReader_float2"
+                        token inputs:varname.connect = </Root/Table/RootNode/TableMaterial_2/PreviewSurface.inputs:frame:stPrimvarName>
+                        float2 outputs:result
+                    }
+                }
+            }
+        }
+
+        def "Legal_Pad" (
+            active = true
+            references = @Legal_Pad.dataset/Legal_Pad.usdz@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.001, 0.001, 0.001)
+            float3 xformOp:translate = (-0.2, 0.745, -0.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Anchoring" (
+                active = false
+            )
+            {
+                uniform token info:id = "RealityKit.Anchoring"
+
+                def RealityKitStruct "descriptor"
+                {
+                }
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (200, 8.678419, 280.8436)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                        float3 position = (0, 4.3397636, 0)
+                    }
+                }
+            }
+
+            def RealityKitComponent "InputTarget"
+            {
+                uniform token info:id = "RealityKit.InputTarget"
+            }
+        }
+
+        def "promodoro" (
+            active = true
+            references = @promodoro.dataset/promodoro.usdz@
+        )
+        {
+            reorder nameChildren = ["mixkit_digital_clock_digital_alarm_buzzer_992_wav", "CarAlarm", "Materials", "Meshes", "Collider", "InputTarget"]
+            float3 xformOp:scale = (0.001, 0.001, 0.001)
+            float3 xformOp:translate = (0, 0.75, 0.25)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (159.70221, 300, 211.64214)
+                    float radius = 1.8
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                        float3 position = (29.314762, 116.42514, 27.664772)
+                    }
+                }
+            }
+
+            def RealityKitComponent "InputTarget"
+            {
+                uniform token info:id = "RealityKit.InputTarget"
+            }
+
+            def "CarAlarm" (
+                active = true
+                prepend references = @CarAlarm.usdz@
+            )
+            {
+                uniform token calibrationMode = "absolute"
+                uniform token loadingStrategy = "Preload"
+                uniform bool shouldLoop = 1
+            }
+        }
+
+        def RealityKitComponent "Collider" (
+            active = false
+        )
         {
             uint group = 1
             uniform token info:id = "RealityKit.Collider"
@@ -38,25 +417,38 @@ def Xform "Root"
 
             def RealityKitStruct "Shape"
             {
-                float3 extent = (0.2, 0.2, 0.2)
-                float radius = 0.1
-                token shapeType = "Sphere"
+                float3 extent = (0.7806376, 1.0164251, 0.7775866)
+                float radius = 1.8
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (0, 0.50821257, 0)
+                }
             }
         }
 
-        def RealityKitComponent "InputTarget"
+        def RealityKitComponent "InputTarget" (
+            active = false
+        )
         {
             uniform token info:id = "RealityKit.InputTarget"
         }
-    }
 
-    def "GridMaterial" (
-        active = true
-        references = @Materials/GridMaterial.usda@
-    )
-    {
-        float3 xformOp:scale = (1, 1, 1)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        def RealityKitComponent "Anchoring" (
+            active = false
+        )
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                token location = "ThumbTip"
+                token orientation = "Right"
+                matrix4d transform = ( (0.9998476505279541, 0, -0.017452403903007507, 0), (0, 1, 0, 0), (0.017452403903007507, 0, 0.9998476505279541, 0), (0, 0, 0, 1) )
+                token type = "World"
+            }
+        }
     }
 }
 
