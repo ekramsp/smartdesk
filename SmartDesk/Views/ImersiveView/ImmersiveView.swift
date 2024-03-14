@@ -91,6 +91,7 @@ struct ImmersiveView: View {
             if value.entity.name == Constants.clock {
                 logger.debug("!102: ImmersiveView() tapped on clock")
                 if viewModel.audioPlayBackController?.isPlaying ?? false {
+                    viewModel.isAlarmStop = true
                     viewModel.audioPlayBackController?.stop()
                 } else {
                     showAttachMentClock.toggle()

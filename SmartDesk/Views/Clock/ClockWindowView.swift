@@ -73,7 +73,8 @@ struct ClockWindowView: View {
                         .overlay (
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(isAlarmPlaying && i == alarms.count - 1 ? .red : .white,lineWidth: 4)
-                                .animation(isAlarmPlaying && i == alarms.count - 1 ? easeInOutAnimation : .default, value: isAlarmPlaying && i == alarms.count - 1)
+                                .animation(isAlarmPlaying && i == alarms.count - 1 ? easeInOutAnimation : .default,
+                                           value: isAlarmPlaying && i == alarms.count - 1)
                         ).mask(RoundedRectangle(cornerRadius: 20))
                         .clipShape(RoundedRectangle(cornerRadius: 5))
                         .onTapGesture {
@@ -114,7 +115,11 @@ struct ClockWindowView: View {
                     }
                 }.onReceive(time, perform: { _ in
                    checkForAlarm()
-                })
+                }).onChange(of: viewModel.isAlarmStop) { oldValue, newValue in
+                    if newValue {
+                        isAlarmPlaying = false
+                    }
+                }
         }.roundedBorder()
             .padding(30)
             .ornament(attachmentAnchor: .scene(.bottom)) {
